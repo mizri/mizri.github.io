@@ -99,13 +99,14 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="设备像素、css像素、设备独立像素、设备像素比、Viewport">
 <meta property="og:url" content="http://yoursite.com/2017/08/04/devicePixelRatio/index.html">
-<meta property="og:site_name" content="mzir的博客">
+<meta property="og:site_name" content="mizri的博客">
 <meta property="og:description" content="在还是以PC为主的年代，这些概念作为前端开发可能不需要了解，而在如今移动大行其道的时候，这些概念是必须深入理解的，如果你现在是在做移动页面的开发，而且并不了解这些概念的时候，会被一些奇怪的现象所迷惑，比如你在不同手机上发现你的布局文字等等东西会一样，这是为什么呢？ 分辨率或许有人很奇怪，这分辨率有什么好说的，实际上分辨率是有两种，如果分不清楚，px与px就傻傻分不清楚了，一种是物理分辨率实际就是我">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/images/ppi.jpg">
 <meta property="og:image" content="http://yoursite.com/images/iphoneppi.png">
 <meta property="og:image" content="http://yoursite.com/images/dpr.png">
-<meta property="og:updated_time" content="2017-08-06T08:05:46.766Z">
+<meta property="og:image" content="http://yoursite.com/images/layoutviewport.png">
+<meta property="og:updated_time" content="2017-08-09T13:13:06.145Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设备像素、css像素、设备独立像素、设备像素比、Viewport">
 <meta name="twitter:description" content="在还是以PC为主的年代，这些概念作为前端开发可能不需要了解，而在如今移动大行其道的时候，这些概念是必须深入理解的，如果你现在是在做移动页面的开发，而且并不了解这些概念的时候，会被一些奇怪的现象所迷惑，比如你在不同手机上发现你的布局文字等等东西会一样，这是为什么呢？ 分辨率或许有人很奇怪，这分辨率有什么好说的，实际上分辨率是有两种，如果分不清楚，px与px就傻傻分不清楚了，一种是物理分辨率实际就是我">
@@ -144,7 +145,7 @@
 
 
 
-  <title>设备像素、css像素、设备独立像素、设备像素比、Viewport | mzir的博客</title>
+  <title>设备像素、css像素、设备独立像素、设备像素比、Viewport | mizri的博客</title>
   
 
 
@@ -180,12 +181,12 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">mzir的博客</span>
+        <span class="site-title">mizri的博客</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
       
-        <p class="site-subtitle">javascript</p>
+        <p class="site-subtitle">一入程序深似海，从此姑娘是路人</p>
       
   </div>
 
@@ -306,7 +307,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="mzir的博客">
+      <meta itemprop="name" content="mizri的博客">
     </span>
 
     
@@ -371,127 +372,28 @@
 <h2 id="css像素"><a href="#css像素" class="headerlink" title="css像素"></a>css像素</h2><p>它是个抽象概念，用在逻辑上衡量像素，它独立设备，简单说就是我们在写css代码的时候px，这通常是pc端叫法，css像素与屏幕无关，但与浏览器窗口的可视区域有关，这意味着css像素并不一定与设备像素一一对应，它实际上是个相对单位，相对的是<font color="red"><strong>设备物理像素</strong></font></p>
 <h2 id="设备独立像素dip或dp-device-independent-pixels"><a href="#设备独立像素dip或dp-device-independent-pixels" class="headerlink" title="设备独立像素dip或dp(device independent pixels)"></a>设备独立像素dip或dp(device independent pixels)</h2><p>又称为设备无关像素或逻辑像素，它也是个相对单位，也是相对<font color="red"><strong>设备物理像素</strong></font>，它囊括了css像素的概念，你可以理解为计算机屏幕坐标系中的一个点，他是可以由程序控制的虚拟像素，<font color="red">逻辑分辨率</font>对应的就是它，所以接下来主要以<font color="red"><strong>设备物理像素</strong></font>与<font color="red"><strong>设备独立像素</strong></font>来讲解</p>
 <h2 id="两者的关系"><a href="#两者的关系" class="headerlink" title="两者的关系"></a>两者的关系</h2><p>上面已经简单的介绍了三者的概念，<font color="red"><strong>设备独立像素</strong></font>是相对<font color="red"><strong>设备物理像素</strong></font>的，那么他们之间的关系是如何的呢？在pc端页面没有缩放的时候，一个<font color="red"><strong>设备物理像素</strong></font>=一个<font color="red"><strong>设备独立像素</strong></font>，<br>然而在移动端就不一样了，在如今的移动终端上他们基本上是不一样的，要解释清楚那么首先就要提到ppi这个概念</p>
-<h3 id="ppi"><a href="#ppi" class="headerlink" title="ppi"></a>ppi</h3><p><font color="red">ppi</font>是每英寸内有多少个<font color="red">设备物理像素</font>，<br>更直白点的说法就是像素密度（pixel density），ppi的值越高，意味着画质越清晰，看起来就会更细腻，既然和屏幕的实际尺寸有关，那么直接上公式</p>
-<p><img src="/images/ppi.jpg" alt=""></p>
-<p>公式中我们可以看到，<font color="red">ppi</font>是通过勾股定理换算出来的，<br>我们以苹果手机为例再来看一张图</p>
-<p><img src="/images/iphoneppi.png" alt=""></p>
-<p>首先我们明白什么是屏幕尺寸，屏幕尺寸是指手机对角线的长度，单位是英寸（in），从上图通过计算我们可以得出</p>
-<hr>
-<blockquote>
-<p><font color="#000">phone6 plus ppi = √1920^2 * 1080^2 / 5.5 = 401</font></p>
-<p><font color="#000">phone6 ppi = √1344^2 * 750^2 / 5.5 = 326</font></p>
-<p><font color="#000">phone5s ppi = √1136^2 * 640^2 / 5.5 = 326</font></p>
-<hr>
-</blockquote>
-<p>我们在看一个表格，仍然按以iphone为主</p>
-<table>
-<thead>
-<tr>
-<th><font color="#000"><strong>设备</strong></font></th>
-<th><font color="#000"><strong>尺寸</strong></font></th>
-<th><font color="#000"><strong>逻辑分辨率</strong><br>logic&nbsp;pixel</font></th>
-<th><font color="#000"><strong>物理分辨率</strong><br>physic&nbsp;pixel</font></th>
-<th><font color="#000"><strong>渲染后</strong></font></th>
-<th><font color="#000"><strong>PPI</strong></font></th>
-<th><font color="#000"><strong>设备像素比</strong><br><font color="red">DRP</font></font> </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>iPhone 3GS</td>
-<td>3.5</td>
-<td>320X480</td>
-<td>320x480</td>
-<td>-</td>
-<td>163</td>
-<td>@1X</td>
-</tr>
-<tr>
-<td>iPhone 4/4s</td>
-<td>3.5</td>
-<td>320X480</td>
-<td>640x960</td>
-<td>-</td>
-<td>330</td>
-<td>@2X</td>
-</tr>
-<tr>
-<td>iPhone 5/5s/5c</td>
-<td>4.0</td>
-<td>320X568</td>
-<td>640x1136</td>
-<td>-</td>
-<td>326</td>
-<td>@2X</td>
-</tr>
-<tr>
-<td>iPhone 6</td>
-<td>4.7</td>
-<td>375X667</td>
-<td>750x1334</td>
-<td>-</td>
-<td>326</td>
-<td>@2X</td>
-</tr>
-<tr>
-<td>iPhone 6Plus</td>
-<td>5.5</td>
-<td>414X736</td>
-<td>1242x2208</td>
-<td>1080x1920</td>
-<td>401</td>
-<td>@3X</td>
-</tr>
-<tr>
-<td>iPhone 6s</td>
-<td>5.5</td>
-<td>375X667</td>
-<td>750x1334</td>
-<td>-</td>
-<td>326</td>
-<td>@2X</td>
-</tr>
-<tr>
-<td>iPhone 6sPlus</td>
-<td>4.7</td>
-<td>414X736</td>
-<td>1242x2208</td>
-<td>1080x1920</td>
-<td>401</td>
-<td>@3X</td>
-</tr>
-<tr>
-<td>iPhone 7</td>
-<td>4.7</td>
-<td>375X667</td>
-<td>750x1334</td>
-<td>-</td>
-<td>326</td>
-<td>@2X</td>
-</tr>
-<tr>
-<td>iPhone 7Plus</td>
-<td>5.5</td>
-<td>414X736</td>
-<td>1242x2208</td>
-<td>1080x1920</td>
-<td>401</td>
-<td>@3X</td>
-</tr>
-</tbody>
-</table>
-<p>从上图我们可以看到各种iphone的<font color="red">ppi</font>大小，那么这个<font color="red">逻辑分辨率</font>和<font color="red">物理分辨率</font>，<font color="red">逻辑像素</font>与<font color="red">物理像素</font>到底是什么关系呢?看的仔细的人会发现，表格中多出了个<font color="red">设备像素比（DPR）</font>的概念</p>
-<hr>
-<blockquote>
-<p><font color="red">设备像素比</font> <font color="blue"><strong>DPR = phyisc pixel / logic pixel</strong></font></p>
-<hr>
-</blockquote>
-<p>我们从表格中可以到看到iphone 3 一个<font color="red">设备独立像素</font>是等于一个<font color="red">设备物理像素</font>的，而iphone6一个<font color="red">设备独立像素</font>是等于二个<font color="red">设备物理像素</font>，也就是iphone6程序控制的一个像素包含了两个物理发光点，也就是我们css中的1px=屏幕的2px，<br>此时是否能区别这两个px之间的关系了？（css的1px在Android中是1dp），现在我们再回顾一下刚才所说在PC端css的1px=屏幕1px，就是因为<font color="red">DPR</font>是1的原因<br>我们在用一个图去直观理解一下</p>
-<p><img src="/images/dpr.png" alt=""></p>
-<p>图中红色方块表示<font color="red">设备物理像素</font>，在<font color="red">ppi</font>为160情况下，css的1px，占1个方块，而ppi为330的css的1px就占了两个方块</p>
-<p>通过以上的说明，应该大致理解他们的关系了，如果还不够理解，自己可以再去查阅一些资料加深理解</p>
-<h1 id="viewport"><a href="#viewport" class="headerlink" title="viewport"></a>viewport</h1><p>通过上面的讲解，我们可能会发现，既然如此，实际上我们前端的开发，似乎只要关注<font color="red">逻辑分辨率</font>就可以了，是这样吗？下面我们接着在看一段代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;div width=&apos;320px; height: 200px; background: red;&apos;&gt;&lt;/div&gt;</div></pre></td></tr></table></figure></p>
+<h3 id="ppi"><a href="#ppi" class="headerlink" title="ppi"></a>ppi</h3><font color="red">ppi</font>是每英寸内有多少个<font color="red">设备物理像素</font>，<br>更直白点的说法就是像素密度（pixel density），ppi的值越高，意味着画质越清晰，看起来就会更细腻，既然和屏幕的实际尺寸有关，那么直接上公式<br><br><img src="/images/ppi.jpg" alt=""><br><br>公式中我们可以看到，<font color="red">ppi</font>是通过勾股定理换算出来的，<br>我们以苹果手机为例再来看一张图<br><br><img src="/images/iphoneppi.png" alt=""><br><br>首先我们明白什么是屏幕尺寸，屏幕尺寸是指手机对角线的长度，单位是英寸（in），从上图通过计算我们可以得出<br><br><strong><strong><br>&gt;<font color="#000">phone6 plus ppi = √1920^2 <em> 1080^2 / 5.5 = 401</em></font><br>&gt;<font color="#000">phone6 ppi = √1344^2  750^2 / 5.5 = 326</font><br>&gt;<font color="#000">phone5s ppi = √1136^2 * 640^2 / 5.5 = 326</font>
+</strong></strong><br><br>我们在看一个表格，仍然按以iphone为主<br><br>|<font color="#000"><strong>设备</strong></font>|<font color="#000"><strong>尺寸</strong></font>|<font color="#000"><strong>逻辑分辨率</strong><br>logic&nbsp;pixel</font>|<font color="#000"><strong>物理分辨率</strong><br>physic&nbsp;pixel</font>|<font color="#000"><strong>渲染后</strong></font>|<font color="#000"><strong>PPI</strong></font>|<font color="#000"><strong>设备像素比</strong><br><font color="red">DRP</font></font><br>|-|-|-|-|-|-|-|<br>|iPhone 3GS|3.5|320X480|320x480|-|163|@1X|<br>|iPhone 4/4s|3.5|320X480|640x960|-|330|@2X|<br>|iPhone 5/5s/5c|4.0|320X568|640x1136|-|326|@2X|<br>|iPhone 6|4.7|375X667|750x1334|-|326|@2X|<br>|iPhone 6Plus|5.5|414X736|1242x2208|1080x1920|401|@3X|<br>|iPhone 6s|5.5|375X667|750x1334|-|326|@2X|<br>|iPhone 6sPlus|4.7|414X736|1242x2208|1080x1920|401|@3X|<br>|iPhone 7|4.7|375X667|750x1334|-|326|@2X|<br>|iPhone 7Plus|5.5|414X736|1242x2208|1080x1920|401|@3X|<br><br>从上图我们可以看到各种iphone的<font color="red">ppi</font>大小，那么这个<font color="red">逻辑分辨率</font>和<font color="red">物理分辨率</font>，<font color="red">逻辑像素</font>与<font color="red">物理像素</font>到底是什么关系呢?看的仔细的人会发现，表格中多出了个<font color="red">设备像素比（DPR）</font>的概念<br><br><strong>**<br>&gt; <font color="red">设备像素比</font> <font color="blue"></font></strong>DPR = phyisc pixel / logic pixel<strong><br>**</strong><br><br>我们从表格中可以到看到iphone 3 一个<font color="red">设备独立像素</font>是等于一个<font color="red">设备物理像素</font>的，而iphone6一个<font color="red">设备独立像素</font>是等于二个<font color="red">设备物理像素</font>，也就是iphone6程序控制的一个像素包含了两个物理发光点，也就是我们css中的1px=屏幕的2px，<br>此时是否能区别这两个px之间的关系了？（css的1px在Android中是1dp），现在我们再回顾一下刚才所说在PC端css的1px=屏幕1px，就是因为<font color="red">DPR</font>是1的原因<br>我们在用一个图去直观理解一下<br><br><img src="/images/dpr.png" alt=""><br><br>图中红色方块表示<font color="red">设备物理像素</font>，在<font color="red">ppi</font>为160情况下，css的1px，占1个方块，而ppi为330的css的1px就占了两个方块<br><br>通过以上的说明，应该大致理解他们的关系了，如果还不够理解，自己可以再去查阅一些资料加深理解<br><br># viewport<br><br>通过上面的讲解，我们可能会发现，既然如此，实际上我们前端的开发，似乎只要关注<font color="red">逻辑分辨率</font>就可以了，是这样吗？下面我们接着在看一段代码<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;div width=&apos;320px; height: 200px; background: red;&apos;&gt;&lt;/div&gt;</div></pre></td></tr></table></figure><br><br>我们开chrome浏览器，选着iphone 5运行上面的代码，按照我们上面所描述的，iphone5的逻辑分辨率是320X568的，那么它应该占满了屏幕的100%的，可是我们看到的现象却是它占了屏幕1/3左右，这是为什么呢？<br><br>这个就是我们接下来要将的 <font color="red">viewport</font>
 
+<p>首页我们举个例子，当我把body下的一个div宽度设置为35%，那么这个35%是相对什么的呢？css中的块级元素是默认宽度都为100%，每一个css宽度百分比是根据它父元素的宽度来计算的，所以刚才我们所说的div的35%是相对body宽度，而body默认是100%相对html，html宽度也是100%，那么html的100%相对什么的呢？html相对的是<font color="red"><strong>视口</strong></font>，在css标准文档中它被称为<font color="#000"><strong>初始包含块</strong></font>，这个初始包含块是所有CSS百分比的根源。</p>
+<h2 id="三个视口"><a href="#三个视口" class="headerlink" title="三个视口"></a>三个视口</h2><h3 id="布局视口-layout-viewport"><a href="#布局视口-layout-viewport" class="headerlink" title="布局视口(layout viewport)"></a>布局视口(layout viewport)</h3><p>他与浏览器的屏幕无关，他是完全独立的，css会根据他来计算，并且来约束它。我们看一张图片</p>
+<p><img src="/images/layoutviewport.png" alt=""></p>
+<p>通常我们可用<font color="#000"><strong>document.documentElement.clientWidth</strong></font>或获取到它的值</p>
+<h3 id="视觉视口（visual-viewport）"><a href="#视觉视口（visual-viewport）" class="headerlink" title="视觉视口（visual viewport）"></a>视觉视口（visual viewport）</h3><p>它是用户正在看到的网站区域，用户可以通过缩放来操作视觉视口（与设备像素比有关），同时不会影响布局视口，布局视口仍保持在原来的宽度。<br>他可以通过window.innerWidth来获取</p>
+<h3 id="理想视口"><a href="#理想视口" class="headerlink" title="理想视口"></a>理想视口</h3><p>默认情况下，一个手机或平板浏览器的布局宽度为768-1024像素。这对于手机的窄屏来说并不理想。换句话说，布局视口 的默认宽度并不是一个理想的宽度。因此理想视口被引进了。只有当网站是为手机准备的时候才应该使用理想视口。当要添加理想视口。</p>
+<p>理想视口设置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width&quot;&gt;</div></pre></td></tr></table></figure></p>
+<h3 id="到底应该用那个视口"><a href="#到底应该用那个视口" class="headerlink" title="到底应该用那个视口"></a>到底应该用那个视口</h3><ol>
+<li>在PC浏览器中，浏览器窗口就是约束你的css布局的视口（又称为初始包含块）。他决定了用户可以看到什么</li>
+<li>在移动设备上，桌面视口被拆成了两个：布局视口会限制你的css布局，视觉视口会决定用户能看到什么</li>
+<li>移动端浏览器还有一个理想视口，它是对于特定设备上特定的浏览器布局视口的一个理想尺寸</li>
+<li>可以把布局视口的尺寸设置为理想视口，实际上，这就是响应式设计的基础</li>
+</ol>
+<p>举个css例子，以下两个属性都依赖视口，那么是依赖那个视口呢？</p>
+<ol>
+<li>position: fixed 标准：盒子(position设为fixed)相对与视口的位置是固定不变的</li>
+<li>vw和vh单位是相对视口的百分比，width:25vw 意味着元素的宽度是视口宽度25%</li>
+</ol>
+<h3 id="meta视口标签"><a href="#meta视口标签" class="headerlink" title="meta视口标签"></a>meta视口标签</h3>
       
     </div>
     
@@ -530,6 +432,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/08/17/Immutable/" rel="prev" title="从不可变数据到函数式编程">
+                从不可变数据到函数式编程 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -606,7 +512,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -654,7 +560,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#分辨率"><span class="nav-number">1.</span> <span class="nav-text">分辨率</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#此像素非彼像素"><span class="nav-number">2.</span> <span class="nav-text">此像素非彼像素</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#设备物理像素"><span class="nav-number">2.1.</span> <span class="nav-text">设备物理像素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#css像素"><span class="nav-number">2.2.</span> <span class="nav-text">css像素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设备独立像素dip或dp-device-independent-pixels"><span class="nav-number">2.3.</span> <span class="nav-text">设备独立像素dip或dp(device independent pixels)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#两者的关系"><span class="nav-number">2.4.</span> <span class="nav-text">两者的关系</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ppi"><span class="nav-number">2.4.1.</span> <span class="nav-text">ppi</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#viewport"><span class="nav-number">3.</span> <span class="nav-text">viewport</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#分辨率"><span class="nav-number">1.</span> <span class="nav-text">分辨率</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#此像素非彼像素"><span class="nav-number">2.</span> <span class="nav-text">此像素非彼像素</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#设备物理像素"><span class="nav-number">2.1.</span> <span class="nav-text">设备物理像素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#css像素"><span class="nav-number">2.2.</span> <span class="nav-text">css像素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设备独立像素dip或dp-device-independent-pixels"><span class="nav-number">2.3.</span> <span class="nav-text">设备独立像素dip或dp(device independent pixels)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#两者的关系"><span class="nav-number">2.4.</span> <span class="nav-text">两者的关系</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ppi"><span class="nav-number">2.4.1.</span> <span class="nav-text">ppi</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三个视口"><span class="nav-number">2.5.</span> <span class="nav-text">三个视口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#布局视口-layout-viewport"><span class="nav-number">2.5.1.</span> <span class="nav-text">布局视口(layout viewport)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#视觉视口（visual-viewport）"><span class="nav-number">2.5.2.</span> <span class="nav-text">视觉视口（visual viewport）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#理想视口"><span class="nav-number">2.5.3.</span> <span class="nav-text">理想视口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#到底应该用那个视口"><span class="nav-number">2.5.4.</span> <span class="nav-text">到底应该用那个视口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#meta视口标签"><span class="nav-number">2.5.5.</span> <span class="nav-text">meta视口标签</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

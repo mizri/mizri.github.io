@@ -94,16 +94,25 @@
 
 
 
-<meta name="description" content="html javascript css">
-<meta property="og:type" content="website">
-<meta property="og:title" content="mizri的博客">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="引言函数式编程认为可变和共享是万恶之源(Shared mutable state is the root of all evil)“不可变”是函数式编程中的一个核心思想，往下讲之前我们先简单了解一下js数据存储 从javascript数据存储说起js数据类型一共分为两种，一种是基本数据类型，一种是引用类型基本数据类型包含 String、 Number、 Null、 Undefined、 Boole">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从不可变数据到函数式编程">
+<meta property="og:url" content="http://yoursite.com/2017/08/17/Immutable/index.html">
 <meta property="og:site_name" content="mizri的博客">
-<meta property="og:description" content="html javascript css">
+<meta property="og:description" content="引言函数式编程认为可变和共享是万恶之源(Shared mutable state is the root of all evil)“不可变”是函数式编程中的一个核心思想，往下讲之前我们先简单了解一下js数据存储 从javascript数据存储说起js数据类型一共分为两种，一种是基本数据类型，一种是引用类型基本数据类型包含 String、 Number、 Null、 Undefined、 Boole">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/images/imm1.png">
+<meta property="og:image" content="http://yoursite.com/images/imm2.png">
+<meta property="og:image" content="http://yoursite.com/images/imm3.png">
+<meta property="og:image" content="http://yoursite.com/images/imm4.gif">
+<meta property="og:image" content="http://yoursite.com/images/imm5.jpg">
+<meta property="og:image" content="http://yoursite.com/images/imm6.jpg">
+<meta property="og:image" content="http://yoursite.com/images/imm7.jpg">
+<meta property="og:updated_time" content="2017-08-18T08:00:30.065Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="mizri的博客">
-<meta name="twitter:description" content="html javascript css">
+<meta name="twitter:title" content="从不可变数据到函数式编程">
+<meta name="twitter:description" content="引言函数式编程认为可变和共享是万恶之源(Shared mutable state is the root of all evil)“不可变”是函数式编程中的一个核心思想，往下讲之前我们先简单了解一下js数据存储 从javascript数据存储说起js数据类型一共分为两种，一种是基本数据类型，一种是引用类型基本数据类型包含 String、 Number、 Null、 Undefined、 Boole">
+<meta name="twitter:image" content="http://yoursite.com/images/imm1.png">
 
 
 
@@ -132,13 +141,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/08/17/Immutable/"/>
 
 
 
 
 
-  <title>mizri的博客</title>
+  <title>从不可变数据到函数式编程 | mizri的博客</title>
   
 
 
@@ -163,9 +172,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-   page-home 
- ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -278,9 +285,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -310,9 +317,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/17/Immutable/" itemprop="url">从不可变数据到函数式编程</a></h1>
+          <h1 class="post-title" itemprop="name headline">从不可变数据到函数式编程</h1>
         
 
         <div class="post-meta">
@@ -362,9 +367,7 @@
       
 
       
-        
-          
-            <h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p><font color="#000"><strong>函数式编程认为可变和共享是万恶之源(Shared mutable state is the root of all evil)</strong></font><br>“不可变”是函数式编程中的一个核心思想，往下讲之前我们先简单了解一下js数据存储</p>
+        <h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p><font color="#000"><strong>函数式编程认为可变和共享是万恶之源(Shared mutable state is the root of all evil)</strong></font><br>“不可变”是函数式编程中的一个核心思想，往下讲之前我们先简单了解一下js数据存储</p>
 <h1 id="从javascript数据存储说起"><a href="#从javascript数据存储说起" class="headerlink" title="从javascript数据存储说起"></a>从javascript数据存储说起</h1><p>js数据类型一共分为两种，一种是基本数据类型，一种是引用类型<br>基本数据类型包含 <font color="#000"><strong>String、 Number、 Null、 Undefined、 Boolean</strong></font><br>引用类型包含 <font color="#000"><strong>Array、Object、Function</strong></font><br>那么他们在内存中是如何存储的呢？</p>
 <h2 id="js推内存与栈内存"><a href="#js推内存与栈内存" class="headerlink" title="js推内存与栈内存"></a>js推内存与栈内存</h2><p>实际上不管任何语言，每一个数据都会分配一个内存空间，内存分为<br><strong>栈内存(stack)</strong>、<strong>堆内存(heap)</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var a = 20; // 基本数据类型</div><div class="line">var b = &apos;abc&apos;; // 基本数据类型</div><div class="line">var c = true; // 基本数据类型</div><div class="line">var d = &#123; m: 20 &#125;; // 引用类型</div></pre></td></tr></table></figure>
@@ -426,8 +429,6 @@
 </ul>
 <p>函数式变成还有其它特性，由于准备仓促来不及深入探讨，函数式编程在你未熟悉之前很多概念都是晦涩难懂的，本人也是在探索阶段，简单推荐两个个函数式编程库<br><code>Underscore</code> 这个大名鼎鼎的类库了，很多人都用过<br><code>RxJS</code> 微软的Reactive Extensions for Javascript 是异步事件驱动编程模型库。RxJS使用Observable抽象，由于它真的太过抽象，目前关注度不高</p>
 
-          
-        
       
     </div>
     
@@ -444,159 +445,28 @@
       
 
       
-
-      
-
       
       
-        <div class="post-eof"></div>
+
       
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/04/devicePixelRatio/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="mizri">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://ss0.bdstatic.com/7Ls0a8Sm1A5BphGlnYG/sys/portrait/item/debd636b7169756865776569f20a">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="mizri的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/04/devicePixelRatio/" itemprop="url">设备像素、css像素、设备独立像素、设备像素比、Viewport</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-04T20:00:28+08:00">
-                2017-08-04
-              </time>
+              <a href="/2017/08/04/devicePixelRatio/" rel="next" title="设备像素、css像素、设备独立像素、设备像素比、Viewport">
+                <i class="fa fa-chevron-left"></i> 设备像素、css像素、设备独立像素、设备像素比、Viewport
+              </a>
             
+          </div>
 
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <p>在还是以PC为主的年代，这些概念作为前端开发可能不需要了解，而在如今移动大行其道的时候，这些概念是必须深入理解的，如果你现在是在做移动页面的开发，而且并不了解这些概念的时候，会被一些奇怪的现象所迷惑，比如你在不同手机上发现你的布局文字等等东西会一样，这是为什么呢？</p>
-<h1 id="分辨率"><a href="#分辨率" class="headerlink" title="分辨率"></a>分辨率</h1><p>或许有人很奇怪，这分辨率有什么好说的，实际上分辨率是有两种，如果分不清楚，px与px就傻傻分不清楚了，一种是<font color="red">物理分辨率</font>实际就是我们通常所说的分辨率，一种是<font color="red">逻辑分辨率</font>，逻辑分辨率是css分辨率。</p>
-<h1 id="此像素非彼像素"><a href="#此像素非彼像素" class="headerlink" title="此像素非彼像素"></a>此像素非彼像素</h1><p>我们通常说的分辨率为1920*1080中的像素(px)概念并不是我们css中的像素（px）概念，这两者是不一样的概念，只不过在pc端分辨率1px=css的1px，但这个两个px概念是不一样的，接着往下看你就会明白了。</p>
-<h2 id="设备物理像素"><a href="#设备物理像素" class="headerlink" title="设备物理像素"></a>设备物理像素</h2><p>又称为设备像素（device pixel）或物理像素（Physical pixels）<br>是屏幕能够控制的最小显示单位，在屏幕上它是一个物理发光点，在同一个设备上，它的物理像素是固定的，这是在厂商出厂时就是设置好的，意思就是一个设备的分辨率是固定。比如我们通常所说的1920*1080，意思就是横向有1920个发光点，纵向有1080个发光点，他是无法通过代码去控制的，<font color="red">物理分辨率</font>对应就是它</p>
-<h2 id="css像素"><a href="#css像素" class="headerlink" title="css像素"></a>css像素</h2><p>它是个抽象概念，用在逻辑上衡量像素，它独立设备，简单说就是我们在写css代码的时候px，这通常是pc端叫法，css像素与屏幕无关，但与浏览器窗口的可视区域有关，这意味着css像素并不一定与设备像素一一对应，它实际上是个相对单位，相对的是<font color="red"><strong>设备物理像素</strong></font></p>
-<h2 id="设备独立像素dip或dp-device-independent-pixels"><a href="#设备独立像素dip或dp-device-independent-pixels" class="headerlink" title="设备独立像素dip或dp(device independent pixels)"></a>设备独立像素dip或dp(device independent pixels)</h2><p>又称为设备无关像素或逻辑像素，它也是个相对单位，也是相对<font color="red"><strong>设备物理像素</strong></font>，它囊括了css像素的概念，你可以理解为计算机屏幕坐标系中的一个点，他是可以由程序控制的虚拟像素，<font color="red">逻辑分辨率</font>对应的就是它，所以接下来主要以<font color="red"><strong>设备物理像素</strong></font>与<font color="red"><strong>设备独立像素</strong></font>来讲解</p>
-<h2 id="两者的关系"><a href="#两者的关系" class="headerlink" title="两者的关系"></a>两者的关系</h2><p>上面已经简单的介绍了三者的概念，<font color="red"><strong>设备独立像素</strong></font>是相对<font color="red"><strong>设备物理像素</strong></font>的，那么他们之间的关系是如何的呢？在pc端页面没有缩放的时候，一个<font color="red"><strong>设备物理像素</strong></font>=一个<font color="red"><strong>设备独立像素</strong></font>，<br>然而在移动端就不一样了，在如今的移动终端上他们基本上是不一样的，要解释清楚那么首先就要提到ppi这个概念</p>
-<h3 id="ppi"><a href="#ppi" class="headerlink" title="ppi"></a>ppi</h3><font color="red">ppi</font>是每英寸内有多少个<font color="red">设备物理像素</font>，<br>更直白点的说法就是像素密度（pixel density），ppi的值越高，意味着画质越清晰，看起来就会更细腻，既然和屏幕的实际尺寸有关，那么直接上公式<br><br><img src="/images/ppi.jpg" alt=""><br><br>公式中我们可以看到，<font color="red">ppi</font>是通过勾股定理换算出来的，<br>我们以苹果手机为例再来看一张图<br><br><img src="/images/iphoneppi.png" alt=""><br><br>首先我们明白什么是屏幕尺寸，屏幕尺寸是指手机对角线的长度，单位是英寸（in），从上图通过计算我们可以得出<br><br><strong><strong><br>&gt;<font color="#000">phone6 plus ppi = √1920^2 <em> 1080^2 / 5.5 = 401</em></font><br>&gt;<font color="#000">phone6 ppi = √1344^2  750^2 / 5.5 = 326</font><br>&gt;<font color="#000">phone5s ppi = √1136^2 * 640^2 / 5.5 = 326</font>
-</strong></strong><br><br>我们在看一个表格，仍然按以iphone为主<br><br>|<font color="#000"><strong>设备</strong></font>|<font color="#000"><strong>尺寸</strong></font>|<font color="#000"><strong>逻辑分辨率</strong><br>logic&nbsp;pixel</font>|<font color="#000"><strong>物理分辨率</strong><br>physic&nbsp;pixel</font>|<font color="#000"><strong>渲染后</strong></font>|<font color="#000"><strong>PPI</strong></font>|<font color="#000"><strong>设备像素比</strong><br><font color="red">DRP</font></font><br>|-|-|-|-|-|-|-|<br>|iPhone 3GS|3.5|320X480|320x480|-|163|@1X|<br>|iPhone 4/4s|3.5|320X480|640x960|-|330|@2X|<br>|iPhone 5/5s/5c|4.0|320X568|640x1136|-|326|@2X|<br>|iPhone 6|4.7|375X667|750x1334|-|326|@2X|<br>|iPhone 6Plus|5.5|414X736|1242x2208|1080x1920|401|@3X|<br>|iPhone 6s|5.5|375X667|750x1334|-|326|@2X|<br>|iPhone 6sPlus|4.7|414X736|1242x2208|1080x1920|401|@3X|<br>|iPhone 7|4.7|375X667|750x1334|-|326|@2X|<br>|iPhone 7Plus|5.5|414X736|1242x2208|1080x1920|401|@3X|<br><br>从上图我们可以看到各种iphone的<font color="red">ppi</font>大小，那么这个<font color="red">逻辑分辨率</font>和<font color="red">物理分辨率</font>，<font color="red">逻辑像素</font>与<font color="red">物理像素</font>到底是什么关系呢?看的仔细的人会发现，表格中多出了个<font color="red">设备像素比（DPR）</font>的概念<br><br><strong>**<br>&gt; <font color="red">设备像素比</font> <font color="blue"></font></strong>DPR = phyisc pixel / logic pixel<strong><br>**</strong><br><br>我们从表格中可以到看到iphone 3 一个<font color="red">设备独立像素</font>是等于一个<font color="red">设备物理像素</font>的，而iphone6一个<font color="red">设备独立像素</font>是等于二个<font color="red">设备物理像素</font>，也就是iphone6程序控制的一个像素包含了两个物理发光点，也就是我们css中的1px=屏幕的2px，<br>此时是否能区别这两个px之间的关系了？（css的1px在Android中是1dp），现在我们再回顾一下刚才所说在PC端css的1px=屏幕1px，就是因为<font color="red">DPR</font>是1的原因<br>我们在用一个图去直观理解一下<br><br><img src="/images/dpr.png" alt=""><br><br>图中红色方块表示<font color="red">设备物理像素</font>，在<font color="red">ppi</font>为160情况下，css的1px，占1个方块，而ppi为330的css的1px就占了两个方块<br><br>通过以上的说明，应该大致理解他们的关系了，如果还不够理解，自己可以再去查阅一些资料加深理解<br><br># viewport<br><br>通过上面的讲解，我们可能会发现，既然如此，实际上我们前端的开发，似乎只要关注<font color="red">逻辑分辨率</font>就可以了，是这样吗？下面我们接着在看一段代码<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;div width=&apos;320px; height: 200px; background: red;&apos;&gt;&lt;/div&gt;</div></pre></td></tr></table></figure><br><br>我们开chrome浏览器，选着iphone 5运行上面的代码，按照我们上面所描述的，iphone5的逻辑分辨率是320X568的，那么它应该占满了屏幕的100%的，可是我们看到的现象却是它占了屏幕1/3左右，这是为什么呢？<br><br>这个就是我们接下来要将的 <font color="red">viewport</font>
-
-<p>首页我们举个例子，当我把body下的一个div宽度设置为35%，那么这个35%是相对什么的呢？css中的块级元素是默认宽度都为100%，每一个css宽度百分比是根据它父元素的宽度来计算的，所以刚才我们所说的div的35%是相对body宽度，而body默认是100%相对html，html宽度也是100%，那么html的100%相对什么的呢？html相对的是<font color="red"><strong>视口</strong></font>，在css标准文档中它被称为<font color="#000"><strong>初始包含块</strong></font>，这个初始包含块是所有CSS百分比的根源。</p>
-<h2 id="三个视口"><a href="#三个视口" class="headerlink" title="三个视口"></a>三个视口</h2><h3 id="布局视口-layout-viewport"><a href="#布局视口-layout-viewport" class="headerlink" title="布局视口(layout viewport)"></a>布局视口(layout viewport)</h3><p>他与浏览器的屏幕无关，他是完全独立的，css会根据他来计算，并且来约束它。我们看一张图片</p>
-<p><img src="/images/layoutviewport.png" alt=""></p>
-<p>通常我们可用<font color="#000"><strong>document.documentElement.clientWidth</strong></font>或获取到它的值</p>
-<h3 id="视觉视口（visual-viewport）"><a href="#视觉视口（visual-viewport）" class="headerlink" title="视觉视口（visual viewport）"></a>视觉视口（visual viewport）</h3><p>它是用户正在看到的网站区域，用户可以通过缩放来操作视觉视口（与设备像素比有关），同时不会影响布局视口，布局视口仍保持在原来的宽度。<br>他可以通过window.innerWidth来获取</p>
-<h3 id="理想视口"><a href="#理想视口" class="headerlink" title="理想视口"></a>理想视口</h3><p>默认情况下，一个手机或平板浏览器的布局宽度为768-1024像素。这对于手机的窄屏来说并不理想。换句话说，布局视口 的默认宽度并不是一个理想的宽度。因此理想视口被引进了。只有当网站是为手机准备的时候才应该使用理想视口。当要添加理想视口。</p>
-<p>理想视口设置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width&quot;&gt;</div></pre></td></tr></table></figure></p>
-<h3 id="到底应该用那个视口"><a href="#到底应该用那个视口" class="headerlink" title="到底应该用那个视口"></a>到底应该用那个视口</h3><ol>
-<li>在PC浏览器中，浏览器窗口就是约束你的css布局的视口（又称为初始包含块）。他决定了用户可以看到什么</li>
-<li>在移动设备上，桌面视口被拆成了两个：布局视口会限制你的css布局，视觉视口会决定用户能看到什么</li>
-<li>移动端浏览器还有一个理想视口，它是对于特定设备上特定的浏览器布局视口的一个理想尺寸</li>
-<li>可以把布局视口的尺寸设置为理想视口，实际上，这就是响应式设计的基础</li>
-</ol>
-<p>举个css例子，以下两个属性都依赖视口，那么是依赖那个视口呢？</p>
-<ol>
-<li>position: fixed 标准：盒子(position设为fixed)相对与视口的位置是固定不变的</li>
-<li>vw和vh单位是相对视口的百分比，width:25vw 意味着元素的宽度是视口宽度25%</li>
-</ol>
-<h3 id="meta视口标签"><a href="#meta视口标签" class="headerlink" title="meta视口标签"></a>meta视口标签</h3>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -606,260 +476,11 @@
   </article>
 
 
-    
-      
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/04/print/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="mizri">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://ss0.bdstatic.com/7Ls0a8Sm1A5BphGlnYG/sys/portrait/item/debd636b7169756865776569f20a">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="mizri的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/04/print/" itemprop="url">所有css3单位详解(px/em/rem/pt/cm/vh/vw.....)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-04T10:30:48+08:00">
-                2017-08-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>css的单位一共分为两类一类是<strong><font color="red">相对单位</font></strong>一类是<strong><font color="red">绝对单位</font></strong></p>
-<h1 id="PC端"><a href="#PC端" class="headerlink" title="PC端"></a>PC端</h1><p>首先说说屏幕分辨率</p>
-<h2 id="相对单位-px-em-rem"><a href="#相对单位-px-em-rem" class="headerlink" title="相对单位(px/em/rem)"></a>相对单位(px/em/rem)</h2><h3 id="px"><a href="#px" class="headerlink" title="px"></a>px</h3><p>px是相对单位，比如19</p>
-
-          
-        
+    <div class="post-spread">
       
     </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
   </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/03/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="mizri">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://ss0.bdstatic.com/7Ls0a8Sm1A5BphGlnYG/sys/portrait/item/debd636b7169756865776569f20a">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="mizri的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/03/hello-world/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-03T16:25:22+08:00">
-                2017-08-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
-  
 
 
           </div>
@@ -867,6 +488,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -887,8 +512,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="https://ss0.bdstatic.com/7Ls0a8Sm1A5BphGlnYG/sys/portrait/item/debd636b7169756865776569f20a"
@@ -941,6 +575,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#引言"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#从javascript数据存储说起"><span class="nav-number">2.</span> <span class="nav-text">从javascript数据存储说起</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#js推内存与栈内存"><span class="nav-number">2.1.</span> <span class="nav-text">js推内存与栈内存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不可变性（immutability）"><span class="nav-number">2.2.</span> <span class="nav-text">不可变性（immutability）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#shallowCopy（浅拷贝）"><span class="nav-number">2.2.1.</span> <span class="nav-text">shallowCopy（浅拷贝）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#deepCopy（深拷贝）"><span class="nav-number">2.2.2.</span> <span class="nav-text">deepCopy（深拷贝）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第三种选择immutable-js类库"><span class="nav-number">2.2.3.</span> <span class="nav-text">第三种选择immutable.js类库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#immutable-js结合React使用"><span class="nav-number">2.2.4.</span> <span class="nav-text">immutable.js结合React使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结合redux使用"><span class="nav-number">2.2.5.</span> <span class="nav-text">结合redux使用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#函数式编程"><span class="nav-number">3.</span> <span class="nav-text">函数式编程</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -1061,10 +711,10 @@
 
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
 
-  
+
 
   
 
